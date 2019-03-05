@@ -20,3 +20,23 @@ clouds:
     verify: false
     insecure: true
 {% endif %}
+  os_infra:
+    auth:
+      auth_url: {{ openrc_os_auth_url }}
+      project_name: OpenStack Infrastructure
+      tenant_name: OpenStrack Infrastructure
+      username: admin
+      password: {{ openrc_os_password }}
+      user_domain_name: Default
+      project_domain_name: Default
+    region_name: {{ openrc_region_name }}
+    interface: {{ openrc_clouds_yml_interface }}
+{% if openrc_os_auth_url.endswith('v2.0') %}
+    identity_api_version: "2.0"
+{% else %}
+    identity_api_version: "3"
+{% endif %}
+{% if openrc_insecure | bool %}
+    verify: false
+    insecure: true
+{% endif %}
